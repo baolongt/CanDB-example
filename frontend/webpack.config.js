@@ -6,7 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 // For local testing, put the internet identity canister id here
 // const LOCAL_II_CANISTER_ID = 'rkp4c-7iaaa-aaaaa-aaaca-cai';
-const LOCAL_II_CANISTER_ID = 'rdmx6-jaaaa-aaaaa-aaadq-cai';
+const LOCAL_II_CANISTER_ID = "rdmx6-jaaaa-aaaaa-aaadq-cai";
 // url for the local internet identity canister
 const LOCAL_II_CANISTER = `http://${LOCAL_II_CANISTER_ID}.localhost:8000/#authorize`;
 
@@ -35,7 +35,7 @@ function initCanisterEnv() {
 
   const canisterConfig = network === "local" ? localCanisters : prodCanisters;
 
-  console.log("canisterConfig", canisterConfig)
+  console.log("canisterConfig", canisterConfig);
   return Object.entries(canisterConfig).reduce((prev, current) => {
     const [canisterName, canisterDetails] = current;
     prev[canisterName.toUpperCase() + "_CANISTER_ID"] =
@@ -44,7 +44,7 @@ function initCanisterEnv() {
   }, {}); // TODO: make people authenticate if want to restrict access to the demo { LOCAL_II_CANISTER });
 }
 const canisterEnvVariables = initCanisterEnv();
-console.log('canisterEnvVariables', canisterEnvVariables)
+console.log("canisterEnvVariables", canisterEnvVariables);
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -85,10 +85,10 @@ module.exports = {
   // modules and CSS as described in the "Adding a stylesheet"
   // tutorial, uncomment the following lines:
   module: {
-  rules: [
+    rules: [
       { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
-      { test: /\.css$/, use: ['style-loader','css-loader'] }
-    ]
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -116,7 +116,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://localhost:8000",
+        target: "http://localhost:4943",
         changeOrigin: true,
         pathRewrite: {
           "^/api": "/api",
